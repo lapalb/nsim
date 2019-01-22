@@ -42,16 +42,16 @@ $ns simplex-link $n3 $n2 0.3Mb 100ms DropTail
 
 set lan [$ns newLan "$n3 $n4 $n5" 0.5Mb 40ms LL Queue/DropTail MAC/802_3 Channel]
 
-# $ns duplex-link $n3 $n4 0.5Mb 40ms DropTail
-# $ns duplex-link $n3 $n5 0.5Mb 30ms DropTail
+ $ns duplex-link $n3 $n4 0.5Mb 40ms DropTail
+ $ns duplex-link $n3 $n5 0.5Mb 30ms DropTail
 
 #Give node position (for NAM)
-# $ns duplex-link-op $n0 $n2 orient right-down
-# $ns duplex-link-op $n1 $n2 orient right-up
-# $ns simplex-link-op $n2 $n3 orient right
-# $ns simplex-link-op $n3 $n2 orient left
-# $ns duplex-link-op $n3 $n4 orient right-up
-# $ns duplex-link-op $n3 $n5 orient right-down
+ $ns duplex-link-op $n0 $n2 orient right-down
+ $ns duplex-link-op $n1 $n2 orient right-up
+ $ns simplex-link-op $n2 $n3 orient right
+ $ns simplex-link-op $n3 $n2 orient left
+ $ns duplex-link-op $n3 $n4 orient right-up
+ $ns duplex-link-op $n3 $n5 orient right-down
 
 
 #Set Queue Size of link (n2-n3) to 10

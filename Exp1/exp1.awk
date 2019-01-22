@@ -15,6 +15,8 @@ END {
 printf("sent_packets CBR\t %d\n",cbr_send);
 printf("recv_packets CBR\t %d\n",cbr_recv);	
 printf("sent_packets TCP\t %d\n",tcp_send);	
-printf("recv_packets TCP\t %d\n",tcp_recv);		
+printf("recv_packets TCP\t %d\n",tcp_recv);
+printf("Thoroughput of Constant Bit Rate Generator: %d\n",cbr_send/cbr_recv);
+printf("Thoroughput of FTP: %d",cbr_send/cbr_recv);		
 
 }
