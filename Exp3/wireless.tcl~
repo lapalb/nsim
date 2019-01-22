@@ -11,12 +11,14 @@ set val(rp)             AODV
 
 
 set ns_		[new Simulator]
-set tracefd     [open simple.tr w]
+set tracefd     [open aodv.tr w]
 $ns_ trace-all $tracefd
 
 set topo       [new Topography]
 
 $topo load_flatgrid 500 500
+
+set namfile [open aodv.nam w]
 
 create-god $val(nn)
 
@@ -82,24 +84,52 @@ $node_(8) set Z_ 0.0
 $node_(9) set X_ 150
 $node_(9) set Y_ 385.0
 $node_(9) set Z_ 0.0
-#
-# Now produce some simple node movements
-# Node_(1) starts to move towards node_(0)
-#
-$ns_ at 50.0 "$node_(1) setdest 25.0 20.0 15.0"
-$ns_ at 10.0 "$node_(0) setdest 20.0 18.0 1.0"
 
-# Node_(1) then starts to move away from node_(0)
-$ns_ at 100.0 "$node_(1) setdest 490.0 480.0 15.0" 
-
-# Setup traffic flow between nodes
-# TCP connections between node_(0) and node_(1)
 
 set tcp [new Agent/TCP]
 $tcp set class_ 2
 set sink [new Agent/TCPSink]
 $ns_ attach-agent $node_(0) $tcp
 $ns_ attach-agent $node_(1) $sink
+$ns_ connect $tcp $sink
+set ftp [new Application/FTP]
+$ftp attach-agent $tcp
+$ns_ at 10.0 "$ftp start" 
+
+set tcp [new Agent/TCP]
+$tcp set class_ 2
+set sink [new Agent/TCPSink]
+$ns_ attach-agent $node_(2) $tcp
+$ns_ attach-agent $node_(3) $sink
+$ns_ connect $tcp $sink
+set ftp [new Application/FTP]
+$ftp attach-agent $tcp
+$ns_ at 10.0 "$ftp start" 
+
+set tcp [new Agent/TCP]
+$tcp set class_ 2
+set sink [new Agent/TCPSink]
+$ns_ attach-agent $node_(4) $tcp
+$ns_ attach-agent $node_(5) $sink
+$ns_ connect $tcp $sink
+set ftp [new Application/FTP]
+$ftp attach-agent $tcp
+$ns_ at 10.0 "$ftp start" 
+
+set tcp [new Agent/TCP]
+$tcp set class_ 2
+set sink [new Agent/TCPSink]
+$ns_ attach-agent $node_(6) $tcp
+$ns_ attach-agent $node_(7) $sink
+$ns_ connect $tcp $sink
+set ftp [new Application/FTP]
+$ftp attach-agent $tcp
+$ns_ at 10.0 "$ftp start" 
+set tcp [new Agent/TCP]
+$tcp set class_ 2
+set sink [new Agent/TCPSink]
+$ns_ attach-agent $node_(8) $tcp
+$ns_ attach-agent $node_(9) $sink
 $ns_ connect $tcp $sink
 set ftp [new Application/FTP]
 $ftp attach-agent $tcp

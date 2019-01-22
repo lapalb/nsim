@@ -19,7 +19,7 @@ set topo       [new Topography]
 $topo load_flatgrid 500 500
 
 set namfile [open aodv.nam w]
-$ns namtrace-all-wireless $namfile $val(x) $val(y)
+$ns_ namtrace-all-wireless $namfile 500 500
 create-god $val(nn)
 
         $ns_ node-config -adhocRouting $val(rp) \
